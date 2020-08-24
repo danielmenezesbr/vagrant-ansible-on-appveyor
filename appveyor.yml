@@ -18,7 +18,7 @@ install:
   - ps: mkdir C:\Users\appveyor\.vagrant.d | Out-Null
     # Disable chocolatey´s verbose download output
   - choco feature disable --name showDownloadProgress
-  - choco install virtualbox --yes
+  - choco install virtualbox --version=6.0.12 --yes
   - ps: Start-FileDownload "https://releases.hashicorp.com/vagrant/2.2.7/vagrant_2.2.7_x86_64.msi"
   - ps: Start-Process -FilePath "msiexec.exe" -ArgumentList "/a vagrant_2.2.7_x86_64.msi /qb TARGETDIR=C:\Vagrant" -Wait
   - set PATH=C:\Vagrant\HashiCorp\Vagrant\bin;C:\VBox;%PATH%
