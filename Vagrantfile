@@ -1,5 +1,16 @@
 Vagrant.configure("2") do |config|
-    config.vm.box = "ubuntu/bionic64"
+    config.vm.box = "cdaf/WindowsServerDC"
+    config.vm.box_version = "2020.05.14"
+    
+    config.winrm.username = "vagrant"
+    config.winrm.password = "vagrant"
+    config.vm.guest = :windows
+    config.vm.communicator = "winrm"
+    config.winrm.timeout = 1800 # 30 minutes
+    config.winrm.max_tries = 20
+    config.winrm.retry_limit = 200
+    config.winrm.retry_delay = 10
+    config.vm.graceful_halt_timeout = 600
 
     config.vm.define 'ubuntu'
 
