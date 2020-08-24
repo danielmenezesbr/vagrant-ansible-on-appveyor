@@ -11,6 +11,7 @@ cache:
   - C:\ProgramData\chocolatey\lib -> appveyor.yml
   - C:\Vagrant -> appveyor.yml
   - C:\Users\appveyor\.vagrant.d -> appveyor.yml
+  - C:\Users\appveyor\.vagrant.d\boxes
 
 install:
   - ps: systeminfo
@@ -29,7 +30,8 @@ install:
   - ipconfig /all
 
 build_script:
-  - ps: Test-NetConnection google.com -Port 80
-  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-  - vagrant up && exit 0
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+ - ps: vagrant box add cdaf/WindowsServerDC
+#  - ps: Test-NetConnection google.com -Port 80
+#  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+#  - vagrant up && exit 0
+#  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
