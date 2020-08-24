@@ -10,11 +10,11 @@ init:
 cache:
   - C:\ProgramData\chocolatey\lib
   - C:\Vagrant
-  - C:\Users\appveyor\.vagrant.d
+#  - C:\Users\appveyor\.vagrant.d
 
 install:
   - ps: systeminfo
-  - ps: mkdir C:\Users\appveyor\.vagrant.d | Out-Null
+#  - ps: mkdir C:\Users\appveyor\.vagrant.d | Out-Null
   - choco feature disable --name showDownloadProgress
   - choco install vagrant --version=2.2.7 --yes --ignore-detected-reboot --ignore-package-exit-codes && exit 0
   - dism.exe /Online /Disable-Feature:Microsoft-Hyper-V /Quiet
