@@ -35,12 +35,12 @@ build_script:
 #  - ps: ((Get-Content -path C:\Users\appveyor\.vagrant.d\boxes\cdaf-VAGRANTSLASH-WindowsServerDC\2020.05.14\virtualbox\box.ovf -Raw) -replace '<Display controller="VBoxSVGA" VRAMSize="128"/>','') | Set-Content -Path C:\Users\appveyor\.vagrant.d\boxes\cdaf-VAGRANTSLASH-WindowsServerDC\2020.05.14\virtualbox\box.ovf
   - ps: Test-NetConnection google.com -Port 80
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-  - ps: >-
-Try {
-vagrant up
-}
-Catch {
-vagrant halt --force
-vagrant up
-}
+  - ps: |
+      Try {
+      vagrant up
+      }
+      Catch {
+        vagrant halt --force
+        vagrant up
+      }
   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))  
