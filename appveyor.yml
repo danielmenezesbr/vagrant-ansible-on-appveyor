@@ -36,11 +36,9 @@ build_script:
   - ps: Test-NetConnection google.com -Port 80
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   - ps: |
-      Try {
-      vagrant up
-      }
-      Catch {
+      $where = vagrant up 2>&1
+      if($LASTEXITCODE -ne 0){
         vagrant halt --force
-        vagrant up
+        vagrant up 
       }
   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))  
