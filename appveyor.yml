@@ -20,7 +20,7 @@ install:
   - choco install vagrant --version=2.2.9 --yes --ignore-detected-reboot --ignore-package-exit-codes && exit 0
   - dism.exe /Online /Disable-Feature:Microsoft-Hyper-V /Quiet
 #  - choco install virtualbox
-  - choco install virtualbox --version=6.0.44
+  - choco install virtualbox --version=6.0.24
 #  - choco install virtualbox --version=5.2.42
 #  - ps: Start-FileDownload "https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.msi"
 #  - ps: Start-Process -FilePath "msiexec.exe" -ArgumentList "/a vagrant_2.2.9_x86_64.msi /qb TARGETDIR=C:\Vagrant" -Wait
