@@ -3,7 +3,7 @@ image: Visual Studio 2019
 
 # RDP Debugging
 init:
-- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+#- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 on_finish:
 - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
@@ -14,7 +14,7 @@ cache:
 #  - C:\Users\appveyor\.vagrant.d\boxes
 
 install:
-  - ps: bcdedit /set hypervisorlaunchtype off
+  - ps: Dism /online /disable-feature /featurename:Microsoft-Hyper-V /NoRestart
 #  - ps: shutdown -s -t 0
   - ps: Restart-Computer -Force -Verbose
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
