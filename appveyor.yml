@@ -15,9 +15,19 @@ cache:
 #  - C:\Users\appveyor\.vagrant.d\boxes
 
 install:
+ - set TEST_VAR=Hello, world!
+ - echo before reboot
+ - ps: Restart-Computer -Force            # here the server goes restarting
+ - echo Before sleep
+ - ps: |
+     Write-Host $env:TEST_VAR
+     Write-Host ([datetime]::Now)
+     Start-Sleep -s 10
+     Write-Host "After sleep"
+     Write-Host ([datetime]::Now)
 #  - ps: shutdown -s -t 0
-  - ps: Restart-Computer -Force -Verbose
-#  - ps: shutdown /r /t 00 /f
+#  - ps: Restart-Computer -Force -Verbose
+  - shutdown /r /t 00 /f
   - ps: systeminfo
   - ps: systeminfo
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
