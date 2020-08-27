@@ -16,7 +16,10 @@ cache:
 install:
   - ps: Dism /online /disable-feature /featurename:Microsoft-Hyper-V /NoRestart
 #  - ps: shutdown -s -t 0
-  - ps: Restart-Computer -Force -Verbose
+  #- ps: Restart-Computer -Force -Verbose
+  - ps: shutdown /r /t 00 /f
+  - ps: systeminfo
+  - ps: systeminfo
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   - ps: systeminfo
