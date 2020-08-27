@@ -14,8 +14,7 @@ cache:
 #  - C:\Users\appveyor\.vagrant.d\boxes
 
 install:
-  - ps: |
-      $where = Dism /online /disable-feature /featurename:Microsoft-Hyper-V /NoRestart 2>&1
+  - ps: Dism /online /disable-feature /featurename:Microsoft-Hyper-V /NoRestart ^& exit 0
 #  - ps: shutdown -s -t 0
   #- ps: Restart-Computer -Force -Verbose
   - ps: shutdown /r /t 00 /f
