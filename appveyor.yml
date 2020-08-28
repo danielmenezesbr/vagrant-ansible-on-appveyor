@@ -6,7 +6,8 @@ init:
 #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 - Dism /online /disable-feature /featurename:Microsoft-Hyper-V /NoRestart || exit 0
 - choco feature disable --name showDownloadProgress
-- choco install virtualbox --version=6.0.24 --ignore-detected-reboot --ignore-package-exit-codes && exit 0
+- choco install virtualbox --version=6.1.12 --ignore-detected-reboot --ignore-package-exit-codes && exit 0
+#- choco install virtualbox --version=6.0.24 --ignore-detected-reboot --ignore-package-exit-codes && exit 0
 - choco install vagrant --version=2.2.9 --yes --ignore-detected-reboot --ignore-package-exit-codes && exit 0
 on_finish:
 #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
