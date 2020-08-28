@@ -28,16 +28,12 @@ install:
 #  - ps: shutdown -s -t 0
 #  - ps: Restart-Computer -Force -Verbose
   - ps: systeminfo
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-  - ps: systeminfo
 #  - ps: mkdir C:\Users\appveyor\.vagrant.d | Out-Null
   - choco feature disable --name showDownloadProgress
   - choco install vagrant --version=2.2.9 --yes --ignore-detected-reboot --ignore-package-exit-codes && exit 0
 #  - dism.exe /Online /Disable-Feature:Microsoft-Hyper-V /Quiet
-  - choco install virtualbox
-#  - choco install virtualbox --version=6.0.24
+#  - choco install virtualbox
+  - choco install virtualbox --version=6.0.24
 #  - choco install virtualbox --version=5.2.42
 #  - ps: Start-FileDownload "https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.msi"
 #  - ps: Start-Process -FilePath "msiexec.exe" -ArgumentList "/a vagrant_2.2.9_x86_64.msi /qb TARGETDIR=C:\Vagrant" -Wait
@@ -49,8 +45,6 @@ install:
 
 build_script:
   - ps: vagrant box add cdaf/WindowsServerDC --provider virtualbox
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))  
-  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))  
 #  - ps: ((Get-Content -path C:\Users\appveyor\.vagrant.d\boxes\cdaf-VAGRANTSLASH-WindowsServerDC\2020.05.14\virtualbox\box.ovf -Raw) -replace '<Display controller="VBoxSVGA" VRAMSize="128"/>','') | Set-Content -Path C:\Users\appveyor\.vagrant.d\boxes\cdaf-VAGRANTSLASH-WindowsServerDC\2020.05.14\virtualbox\box.ovf
   - ps: Test-NetConnection google.com -Port 80
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
