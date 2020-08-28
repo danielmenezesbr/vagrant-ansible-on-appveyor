@@ -27,9 +27,8 @@ install:
      Write-Host ([datetime]::Now)
 #  - ps: shutdown -s -t 0
 #  - ps: Restart-Computer -Force -Verbose
-  - shutdown /r /t 00 /f
   - ps: systeminfo
-  - ps: systeminfo
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
   - ps: systeminfo
