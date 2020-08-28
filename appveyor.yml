@@ -18,18 +18,17 @@ cache:
 #  - C:\Users\appveyor\.vagrant.d\boxes
 
 install:
-#  - ps: mkdir C:\Users\appveyor\.vagrant.d | Out-Null
-#  - dism.exe /Online /Disable-Feature:Microsoft-Hyper-V /Quiet
-#  - choco install virtualbox
-#  - choco install virtualbox --version=5.2.42
-#  - ps: Start-FileDownload "https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.msi"
-#  - ps: Start-Process -FilePath "msiexec.exe" -ArgumentList "/a vagrant_2.2.9_x86_64.msi /qb TARGETDIR=C:\Vagrant" -Wait
   - set PATH=C:\Vagrant\HashiCorp\Vagrant\bin;C:\VBox;%PATH%
   - set TEST_VAR=Hello, world!
   - echo before reboot
   - ps: Restart-Computer -Force      # here the server goes restarting
   - ps: Start-Sleep -s 10
-  
+#  - ps: mkdir C:\Users\appveyor\.vagrant.d | Out-Null
+#  - dism.exe /Online /Disable-Feature:Microsoft-Hyper-V /Quiet
+#  - choco install virtualbox
+#  - choco install virtualbox --version=5.2.42
+#  - ps: Start-FileDownload "https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.msi"
+#  - ps: Start-Process -FilePath "msiexec.exe" -ArgumentList "/a vagrant_2.2.9_x86_64.msi /qb TARGETDIR=C:\Vagrant" -Wait  
 build_script:
   - echo after reboot
   - echo %TEST_VAR%
