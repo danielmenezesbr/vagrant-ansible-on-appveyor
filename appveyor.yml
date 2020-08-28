@@ -54,3 +54,4 @@ build_script:
         vagrant halt --force
       }
   - ps: vagrant up
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
