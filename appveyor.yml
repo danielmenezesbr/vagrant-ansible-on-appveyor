@@ -18,16 +18,6 @@ cache:
 #  - C:\Users\appveyor\.vagrant.d\boxes
 
 install:
-  - set TEST_VAR=Hello, world!
-  - echo before reboot
-  - ps: Restart-Computer -Force            # here the server goes restarting
-  - echo Before sleep
-  - ps: |
-     Write-Host $env:TEST_VAR
-     Write-Host ([datetime]::Now)
-     Start-Sleep -s 10
-     Write-Host "After sleep"
-     Write-Host ([datetime]::Now)
 #  - ps: mkdir C:\Users\appveyor\.vagrant.d | Out-Null
 #  - dism.exe /Online /Disable-Feature:Microsoft-Hyper-V /Quiet
 #  - choco install virtualbox
@@ -35,12 +25,14 @@ install:
 #  - ps: Start-FileDownload "https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.msi"
 #  - ps: Start-Process -FilePath "msiexec.exe" -ArgumentList "/a vagrant_2.2.9_x86_64.msi /qb TARGETDIR=C:\Vagrant" -Wait
   - set PATH=C:\Vagrant\HashiCorp\Vagrant\bin;C:\VBox;%PATH%
-  # Vagrant correctly installed?
-  - vagrant --version
-  - ssh -V
-  - ipconfig /all
-
+  - set TEST_VAR=Hello, world!
+  - echo before reboot
+  - ps: Restart-Computer -Force      # here the server goes restarting
+  - ps: Start-Sleep -s 10
+  
 build_script:
+  - echo after reboot
+  - echo %TEST_VAR%
   - ps: vagrant box add cdaf/WindowsServerDC --provider virtualbox
 #  - ps: ((Get-Content -path C:\Users\appveyor\.vagrant.d\boxes\cdaf-VAGRANTSLASH-WindowsServerDC\2020.05.14\virtualbox\box.ovf -Raw) -replace '<Display controller="VBoxSVGA" VRAMSize="128"/>','') | Set-Content -Path C:\Users\appveyor\.vagrant.d\boxes\cdaf-VAGRANTSLASH-WindowsServerDC\2020.05.14\virtualbox\box.ovf
   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
