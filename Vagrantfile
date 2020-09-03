@@ -1,6 +1,7 @@
 Vagrant.configure("2") do |config|
-    config.vm.box = "cdaf/WindowsServerDC"
-    config.vm.box_version = "2020.05.14"
+    #config.vm.box = "cdaf/WindowsServerDC"
+    #config.vm.box_version = "2020.05.14"
+    config.vm.box = "danielmenezesbr/WindowsServerDC"
     
     config.winrm.username = "vagrant"
     config.winrm.password = "vagrant"
@@ -25,8 +26,8 @@ Vagrant.configure("2") do |config|
         vb.memory = 2048
         vb.cpus = 2
         # Vagrant needs this config on AppVeyor to spin up correctly (see https://help.appveyor.com/discussions/problems/1247-vagrant-not-working-inside-appveyor)
-        vb.customize ["modifyvm", :id, "--nictype1", "Am79C973"]
-        vb.customize ['modifyvm', :id, '--cableconnected1', 'on']
+        #vb.customize ["modifyvm", :id, "--nictype1", "Am79C973"]
+        #vb.customize ['modifyvm', :id, '--cableconnected1', 'on']
         vb.gui = true
     end
 end
