@@ -35,7 +35,8 @@ install:
 #  - choco install virtualbox
 #  - choco install virtualbox --version=5.2.42
 #  - ps: Start-FileDownload "https://releases.hashicorp.com/vagrant/2.2.9/vagrant_2.2.9_x86_64.msi"
-#  - ps: Start-Process -FilePath "msiexec.exe" -ArgumentList "/a vagrant_2.2.9_x86_64.msi /qb TARGETDIR=C:\Vagrant" -Wait  
+#  - ps: Start-Process -FilePath "msiexec.exe" -ArgumentList "/a vagrant_2.2.9_x86_64.msi /qb TARGETDIR=C:\Vagrant" -Wait
+
 build_script:
   - echo after reboot
   - echo %TEST_VAR%
