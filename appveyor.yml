@@ -4,7 +4,7 @@ image: Visual Studio 2019
 # RDP Debugging
 init:
 - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-#- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 #- Dism /online /disable-feature /featurename:Microsoft-Hyper-V /NoRestart || exit 0
 - echo "test"
 
@@ -19,7 +19,7 @@ cache:
 
 install:
   - ps: Get-Date
-  - bcdedit /set hypervisorlaunchtype off
+#  - bcdedit /set hypervisorlaunchtype off
 #  - ps: Invoke-WebRequest https://storage.googleapis.com/vagrantvms/windows-2019-standard-virtualbox.box -OutFile windows-2019-standard-virtualbox.box
   - ps: Get-Date
   - ps: ls
