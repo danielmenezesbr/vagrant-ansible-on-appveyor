@@ -4,10 +4,6 @@ image: Visual Studio 2019
 # RDP Debugging
 init:
 #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
-- ps: Get-Date
-- ps: Invoke-WebRequest https://storage.googleapis.com/vagrantvms/windows-2019-standard-virtualbox.box -OutFile windows-2019-standard-virtualbox.box
-- ps: Get-Date
-- ps: ls
 - Dism /online /disable-feature /featurename:Microsoft-Hyper-V /NoRestart || exit 0
 
 on_finish:
@@ -20,6 +16,10 @@ cache:
 #  - C:\Users\appveyor\.vagrant.d\boxes
 
 install:
+  - ps: Get-Date
+  - ps: Invoke-WebRequest https://storage.googleapis.com/vagrantvms/windows-2019-standard-virtualbox.box -OutFile windows-2019-standard-virtualbox.box
+  - ps: Get-Date
+  - ps: ls
   - choco feature disable --name showDownloadProgress
   - choco install virtualbox --version=6.1.12 --ignore-detected-reboot --ignore-package-exit-codes && exit 0
 #- choco install virtualbox --version=6.0.24 --ignore-detected-reboot --ignore-package-exit-codes && exit 0
