@@ -4,6 +4,9 @@ image: Visual Studio 2019
 # RDP Debugging
 init:
 #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
+- ps: Get-Date
+- ps: Invoke-WebRequest https://www.dropbox.com/s/0n5lzzg83bha8g5/windows-2019-standard-virtualbox.box?dl=1 -OutFile windows-2019-standard-virtualbox.box
+- ps: Get-Date
 - Dism /online /disable-feature /featurename:Microsoft-Hyper-V /NoRestart || exit 0
 - choco feature disable --name showDownloadProgress
 - choco install virtualbox --version=6.1.12 --ignore-detected-reboot --ignore-package-exit-codes && exit 0
