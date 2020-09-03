@@ -5,7 +5,6 @@ image: Visual Studio 2019
 init:
 #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 #- Dism /online /disable-feature /featurename:Microsoft-Hyper-V /NoRestart || exit 0
-#- bcdedit /set hypervisorlaunchtype off
 - echo "test"
 
 on_finish:
@@ -19,17 +18,18 @@ cache:
 
 install:
   - ps: Get-Date
+  - bcdedit /set hypervisorlaunchtype off
 #  - ps: Invoke-WebRequest https://storage.googleapis.com/vagrantvms/windows-2019-standard-virtualbox.box -OutFile windows-2019-standard-virtualbox.box
-#  - ps: Get-Date
-#  - ps: ls
+  - ps: Get-Date
+  - ps: ls
 #  - choco feature disable --name showDownloadProgress
 #  - choco install virtualbox --version=6.1.12 --ignore-detected-reboot --ignore-package-exit-codes && exit 0
 #  - choco install virtualbox --version=6.0.24 --ignore-detected-reboot --ignore-package-exit-codes && exit 0
 #  - choco install vagrant --version=2.2.9 --yes --ignore-detected-reboot --ignore-package-exit-codes && exit 0
   - set PATH=C:\Vagrant\HashiCorp\Vagrant\bin;C:\VBox;%PATH%
-  - set TEST_VAR=Hello, world!
+  - set TEST_VAR=Hello
   - echo before reboot
-  - ps: Restart-Computer -Force      # here the server goes restarting
+  - ps: Restart-Computer -Force
   - ps: Start-Sleep -s 10
 #  - ps: mkdir C:\Users\appveyor\.vagrant.d | Out-Null
 #  - dism.exe /Online /Disable-Feature:Microsoft-Hyper-V /Quiet
