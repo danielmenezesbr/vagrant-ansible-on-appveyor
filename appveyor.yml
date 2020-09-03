@@ -7,6 +7,7 @@ init:
 - ps: Get-Date
 - ps: Invoke-WebRequest https://www.dropbox.com/s/0n5lzzg83bha8g5/windows-2019-standard-virtualbox.box?dl=1 -OutFile windows-2019-standard-virtualbox.box
 - ps: Get-Date
+- ps: ls
 - Dism /online /disable-feature /featurename:Microsoft-Hyper-V /NoRestart || exit 0
 - choco feature disable --name showDownloadProgress
 - choco install virtualbox --version=6.1.12 --ignore-detected-reboot --ignore-package-exit-codes && exit 0
