@@ -13,6 +13,8 @@ init:
 - choco install virtualbox --version=6.1.12 --ignore-detected-reboot --ignore-package-exit-codes && exit 0
 #- choco install virtualbox --version=6.0.24 --ignore-detected-reboot --ignore-package-exit-codes && exit 0
 - choco install vagrant --version=2.2.9 --yes --ignore-detected-reboot --ignore-package-exit-codes && exit 0
+- vagrant box add windows-2019-standard-virtualbox.box --name danielmenezesbr/WindowsServerDC
+- vagrant box list
 on_finish:
 #- ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 
@@ -37,7 +39,7 @@ install:
 build_script:
   - echo after reboot
   - echo %TEST_VAR%
-  - ps: vagrant box add cdaf/WindowsServerDC --provider virtualbox
+#  - ps: vagrant box add cdaf/WindowsServerDC --provider virtualbox
 #  - ps: ((Get-Content -path C:\Users\appveyor\.vagrant.d\boxes\cdaf-VAGRANTSLASH-WindowsServerDC\2020.05.14\virtualbox\box.ovf -Raw) -replace '<Display controller="VBoxSVGA" VRAMSize="128"/>','') | Set-Content -Path C:\Users\appveyor\.vagrant.d\boxes\cdaf-VAGRANTSLASH-WindowsServerDC\2020.05.14\virtualbox\box.ovf
   - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 #  - ps: |
