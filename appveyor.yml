@@ -19,7 +19,7 @@ cache:
 
 install:
   - ps: Get-Date
-  - ps: bcdedit /set hypervisorlaunchtype off && Restart-Computer -Force
+  - ps: bcdedit /set hypervisorlaunchtype off;Restart-Computer -Force
 #  - ps: Restart-Computer -Force
 #  - ps: Start-Sleep -s 10
 #  - ps: Invoke-WebRequest https://storage.googleapis.com/vagrantvms/windows-2019-standard-virtualbox.box -OutFile windows-2019-standard-virtualbox.box
