@@ -19,7 +19,9 @@ cache:
 
 install:
   - ps: Get-Date
-  - bcdedit /set hypervisorlaunchtype off
+  - ps: bcdedit /set hypervisorlaunchtype off && Restart-Computer -Force
+#  - ps: Restart-Computer -Force
+#  - ps: Start-Sleep -s 10
 #  - ps: Invoke-WebRequest https://storage.googleapis.com/vagrantvms/windows-2019-standard-virtualbox.box -OutFile windows-2019-standard-virtualbox.box
   - ps: Get-Date
   - ps: ls
@@ -30,8 +32,7 @@ install:
   - set PATH=C:\Vagrant\HashiCorp\Vagrant\bin;C:\VBox;%PATH%
   - set TEST_VAR=Hello
   - echo before reboot
-  - ps: Restart-Computer -Force
-  - ps: Start-Sleep -s 10
+#  - ps: Restart-Computer -Force
 #  - ps: mkdir C:\Users\appveyor\.vagrant.d | Out-Null
 #  - dism.exe /Online /Disable-Feature:Microsoft-Hyper-V /Quiet
 #  - choco install virtualbox
