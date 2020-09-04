@@ -19,7 +19,8 @@ cache:
 
 install:
   - ps: Get-Date
-  - ps: bcdedit /set hypervisorlaunchtype off;Restart-Computer -Force
+  - ps: bcdedit /set hypervisorlaunchtype off;
+  - ps: $blockRdp = $true; iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/appveyor/ci/master/scripts/enable-rdp.ps1'))
 #  - ps: Restart-Computer -Force
 #  - ps: Start-Sleep -s 10
 #  - ps: Invoke-WebRequest https://storage.googleapis.com/vagrantvms/windows-2019-standard-virtualbox.box -OutFile windows-2019-standard-virtualbox.box
